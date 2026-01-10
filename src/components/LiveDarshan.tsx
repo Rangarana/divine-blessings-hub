@@ -1,4 +1,5 @@
-import { Radio, Users, Eye, Clock, Bell, Calendar, Play } from "lucide-react";
+import { useState } from "react";
+import { Radio, Users, Eye, Clock, Bell, Calendar, Play, Loader2, AlertCircle, ToggleLeft, ToggleRight } from "lucide-react";
 
 const darshanSchedule = [
   { time: "5:00 AM", event: "Suprabhatam & Temple Opening", active: false },
@@ -13,6 +14,21 @@ const darshanSchedule = [
 ];
 
 const LiveDarshan = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [isAutoplay, setIsAutoplay] = useState(false);
+
+  const toggleAutoplay = () => {
+    const newState = !isAutoplay;
+    setIsAutoplay(newState);
+    if (newState) {
+      setIsPlaying(true);
+    } else {
+      setIsPlaying(false);
+    }
+  };
+
   return (
     <section id="darshan" className="py-20 md:py-32 relative bg-gradient-to-b from-transparent via-secondary/5 to-transparent">
       <div className="container mx-auto px-4">
@@ -42,6 +58,19 @@ const LiveDarshan = () => {
                 <span className="text-sm font-semibold text-white">LIVE</span>
               </div>
 
+              {/* Autoplay Toggle */}
+              <button
+                onClick={toggleAutoplay}
+                className="absolute top-4 right-16 z-10 flex items-center gap-2 px-3 py-1 rounded-full bg-black/50 backdrop-blur-sm hover:bg-black/70 transition-colors border border-white/10"
+              >
+                <span className="text-xs font-semibold text-white">Autoplay</span>
+                {isAutoplay ? (
+                  <ToggleRight className="w-4 h-4 text-green-400" />
+                ) : (
+                  <ToggleLeft className="w-4 h-4 text-gray-400" />
+                )}
+              </button>
+
               {/* HD Badge */}
               <div className="absolute top-4 right-4 z-10 px-2 py-1 rounded bg-black/50 backdrop-blur-sm">
                 <span className="text-xs font-semibold text-white">HD</span>
@@ -49,13 +78,54 @@ const LiveDarshan = () => {
 
               {/* Video Player */}
               <div className="relative aspect-video bg-gradient-to-br from-maroon-deep to-background">
-                <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube.com/embed/nYL5itzirws?autoplay=1&mute=0"
-                  title="Live Darshan - Sri Abhaya Anjaneya Swamy Temple"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+                {!isPlaying ? (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center z-20 bg-black/20 backdrop-blur-[2px] transition-all duration-300 hover:bg-black/30">
+                    <button
+                      onClick={() => setIsPlaying(true)}
+                      className="group relative flex items-center justify-center w-20 h-20 bg-red-600 rounded-full hover:scale-110 transition-all duration-300 shadow-lg shadow-red-600/40"
+                      aria-label="Start Live Darshan"
+                    >
+                      <Play className="w-8 h-8 text-white fill-current ml-1" />
+                      <span className="absolute inset-0 rounded-full animate-ping bg-red-600/50 -z-10" />
+                    </button>
+                    <p className="mt-6 text-white font-heading text-lg drop-shadow-lg">Start Live Darshan</p>
+                    <p className="text-white/80 text-sm font-body">Click to watch with sound</p>
+                  </div>
+                ) : (
+                  <>
+                    {!isLoaded && !hasError && (
+                      <div className="absolute inset-0 flex items-center justify-center z-10 bg-background/10 backdrop-blur-sm">
+                        <Loader2 className="w-10 h-10 text-primary animate-spin" />
+                      </div>
+                    )}
+                    {hasError ? (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center bg-maroon-deep z-20">
+                        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1604606778669-7d4b59d9c7f7?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-20" />
+                        <div className="relative z-10 flex flex-col items-center text-center p-6">
+                          <AlertCircle className="w-12 h-12 text-red-400 mb-4" />
+                          <p className="text-white font-heading text-lg mb-2">Stream Unavailable</p>
+                          <p className="text-white/70 text-sm mb-6 max-w-xs">Unable to load the live stream. Please check your connection or try again later.</p>
+                          <button 
+                            onClick={() => { setHasError(false); setIsLoaded(false); }}
+                            className="px-6 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full text-sm transition-colors font-medium"
+                          >
+                            Retry Connection
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <iframe
+                        className={`w-full h-full transition-opacity duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+                        src={`https://www.youtube.com/embed/SFwEJ6zwecw?autoplay=1&mute=${isAutoplay ? 1 : 0}&playsinline=1&rel=0`}
+                        title="Live Darshan - Sri Abhaya Anjaneya Swamy Temple"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        onLoad={() => setIsLoaded(true)}
+                        onError={() => setHasError(true)}
+                      />
+                    )}
+                  </>
+                )}
                 
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />
