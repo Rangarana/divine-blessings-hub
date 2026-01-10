@@ -51,7 +51,7 @@ const LiveDarshan = () => {
               <div className="relative aspect-video bg-gradient-to-br from-maroon-deep to-background">
                 <iframe
                   className="w-full h-full"
-                  src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&mute=1"
+                  src="https://www.youtube.com/embed/nYL5itzirws?autoplay=1&mute=0"
                   title="Live Darshan - Sri Abhaya Anjaneya Swamy Temple"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
