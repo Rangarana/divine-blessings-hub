@@ -1,8 +1,8 @@
-# Welcome to your Lovable project
+# Welcome to your Devotional project
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+**URL**: https://abhayashaktipeetham.netlify.app/
 
 ## How can I edit this code?
 
