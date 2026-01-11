@@ -62,6 +62,7 @@ const LiveDarshan = () => {
               <button
                 onClick={toggleAutoplay}
                 className="absolute top-4 right-16 z-10 flex items-center gap-2 px-3 py-1 rounded-full bg-black/50 backdrop-blur-sm hover:bg-black/70 transition-colors border border-white/10"
+                aria-label={isAutoplay ? "Disable Autoplay" : "Enable Autoplay"}
               >
                 <span className="text-xs font-semibold text-white">Autoplay</span>
                 {isAutoplay ? (
@@ -167,6 +168,7 @@ const LiveDarshan = () => {
                 <button
                   key={action.label}
                   className="glow-card py-3 px-3 flex items-center justify-center gap-2 text-xs md:text-sm font-body text-foreground/80 hover:text-primary transition-colors"
+                  aria-label={action.label}
                 >
                   <action.icon className={`w-4 h-4 ${action.color}`} />
                   <span className="hidden sm:inline">{action.label}</span>

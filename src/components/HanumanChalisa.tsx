@@ -241,6 +241,8 @@ const HanumanChalisa = () => {
             <div 
               className="aspect-video bg-gradient-to-br from-primary/20 to-accent/10 flex items-center justify-center relative cursor-pointer group"
               onClick={togglePlay}
+              role="button"
+              aria-label={isPlaying ? "Pause Hanuman Chalisa" : "Play Hanuman Chalisa"}
             >
               <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M30%200L60%2030L30%2060L0%2030z%22%20fill%3D%22none%22%20stroke%3D%22%23D4A84B%22%20stroke-width%3D%220.5%22%20opacity%3D%220.1%22%2F%3E%3C%2Fsvg%3E')] opacity-30" />
               <div className="text-center z-10 transition-transform duration-300 group-hover:scale-105">
@@ -277,6 +279,7 @@ const HanumanChalisa = () => {
                   <button
                     onClick={prevVerse}
                     className="p-3 rounded-full hover:bg-muted transition-colors"
+                    aria-label="Previous Verse"
                   >
                     <SkipBack className="w-5 h-5 text-foreground" />
                   </button>
@@ -284,6 +287,7 @@ const HanumanChalisa = () => {
                     onClick={togglePlay}
                     className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center hover:scale-105 transition-transform shadow-lg"
                     style={{ boxShadow: "var(--glow-saffron)" }}
+                    aria-label={isPlaying ? "Pause" : "Play"}
                   >
                     {isBuffering ? (
                       <Loader2 className="w-6 h-6 text-primary-foreground animate-spin" />
@@ -296,6 +300,7 @@ const HanumanChalisa = () => {
                   <button
                     onClick={nextVerse}
                     className="p-3 rounded-full hover:bg-muted transition-colors"
+                    aria-label="Next Verse"
                   >
                     <SkipForward className="w-5 h-5 text-foreground" />
                   </button>
@@ -307,6 +312,7 @@ const HanumanChalisa = () => {
                     <button
                       onClick={toggleMute}
                       className="p-2 rounded-full hover:bg-muted transition-colors"
+                      aria-label={isMuted ? "Unmute" : "Mute"}
                     >
                       {isMuted || volume === 0 ? (
                         <VolumeX className="w-5 h-5 text-muted-foreground" />
@@ -321,6 +327,7 @@ const HanumanChalisa = () => {
                       step="0.01"
                       value={isMuted ? 0 : volume}
                       onChange={handleVolumeChange}
+                      aria-label="Volume Control"
                       className="w-24 h-1.5 bg-muted rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary"
                     />
                   </div>
@@ -331,6 +338,7 @@ const HanumanChalisa = () => {
                       <button
                         key={rate}
                         onClick={() => setPlaybackRate(rate)}
+                        aria-label={`Set playback speed to ${rate}x`}
                         className={`text-xs px-2 py-1 rounded transition-colors ${
                           playbackRate === rate
                             ? "bg-primary text-primary-foreground font-medium"
@@ -358,12 +366,14 @@ const HanumanChalisa = () => {
                   <div className="flex gap-1 bg-muted/30 p-1 rounded-lg">
                     <button 
                       onClick={() => setScript('hindi')} 
+                      aria-label="Show Hindi Lyrics"
                       className={`px-3 py-1 rounded text-xs font-medium transition-colors ${script === 'hindi' ? 'bg-primary text-primary-foreground' : 'hover:bg-muted text-muted-foreground'}`}
                     >
                       Hindi
                     </button>
                     <button 
                       onClick={() => setScript('telugu')} 
+                      aria-label="Show Telugu Lyrics"
                       className={`px-3 py-1 rounded text-xs font-medium transition-colors ${script === 'telugu' ? 'bg-primary text-primary-foreground' : 'hover:bg-muted text-muted-foreground'}`}
                     >
                       Telugu
@@ -372,7 +382,7 @@ const HanumanChalisa = () => {
                   <button
                     onClick={downloadPDF}
                     className="p-2 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-primary"
-                    title="Download PDF"
+                    aria-label="Download Lyrics PDF"
                   >
                     <Download className="w-4 h-4" />
                   </button>
@@ -386,6 +396,7 @@ const HanumanChalisa = () => {
                   placeholder="Search verses..." 
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
+                  aria-label="Search verses"
                   className="w-full pl-9 pr-4 py-2 bg-muted/50 border border-border rounded-lg text-sm focus:outline-none focus:border-primary/50 text-foreground placeholder:text-muted-foreground"
                 />
               </div>

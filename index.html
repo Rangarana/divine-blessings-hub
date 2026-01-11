@@ -7,6 +7,8 @@
     <meta name="description" content="Experience divine darshan of Lord Hanuman in Abhaya Mudra at Sri Abhaya Anjaneya Swamy Temple, Venkatapuram Village, Giddalur, Andhra Pradesh. Live darshan, seva booking, festivals calendar." />
     <meta name="keywords" content="Hanuman Temple, Abhaya Anjaneya, Venkatapuram, Giddalur, Andhra Pradesh, Live Darshan, Hindu Temple, Hanuman Chalisa" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🙏</text></svg>" />
+    <meta name="theme-color" content="#ff9933" />
+    <link rel="manifest" href="/manifest.json" />
     
     <meta property="og:title" content="Sri Abhaya Anjaneya Swamy Temple" />
     <meta property="og:description" content="Sacred abode of Lord Hanuman blessing devotees with fearlessness and strength. Live darshan, seva booking, and spiritual activities." />
@@ -15,6 +17,13 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js');
+        });
+      }
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

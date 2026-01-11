@@ -1,0 +1,20 @@
+{
+  "name": "Sri Abhaya Anjaneya Swamy Temple",
+  "short_name": "Abhaya Anjaneya",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a0b05",
+  "theme_color": "#ff9933",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3655/3655563.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3655/3655563.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
