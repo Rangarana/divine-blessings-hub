@@ -99,7 +99,7 @@ const HanumanChalisa = () => {
   const [currentVerse, setCurrentVerse] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [script, setScript] = useState<'hindi' | 'telugu'>('hindi');
-  const [audioSrc, setAudioSrc] = useState("https://archive.org/download/shree-hanuman-chalisa-gulshan-kumar/Shree%20Hanuman%20Chalisa%20-%20Gulshan%20Kumar.mp3");
+  const [audioSrc, setAudioSrc] = useState("https://archive.org/download/HanumanChalisa_202104/Hanuman%20Chalisa.mp3");
   const audioRef = useRef<HTMLAudioElement>(null);
   const verseRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -157,10 +157,10 @@ const HanumanChalisa = () => {
 
   const handleAudioError = () => {
     console.log("Audio source failed:", audioSrc);
-    if (audioSrc.includes("Gulshan")) {
+    if (audioSrc.includes("202104")) {
+      setAudioSrc("https://archive.org/download/shree-hanuman-chalisa-gulshan-kumar/Shree%20Hanuman%20Chalisa%20-%20Gulshan%20Kumar.mp3");
+    } else if (audioSrc.includes("Gulshan")) {
       setAudioSrc("https://archive.org/download/shree-hanuman-chalisa-hariharan/Shree%20Hanuman%20Chalisa%20-%20Hariharan.mp3");
-    } else if (audioSrc.includes("hariharan")) {
-      setAudioSrc("https://archive.org/download/HanumanChalisa_202104/Hanuman%20Chalisa.mp3");
     }
   };
 

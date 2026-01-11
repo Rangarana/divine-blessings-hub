@@ -86,6 +86,7 @@ const HeroSection = () => {
       <a
         href="#darshan"
         className="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator text-accent/70 hover:text-accent transition-colors"
+        aria-label="Scroll down to Live Darshan"
       >
         <ChevronDown size={36} />
       </a>
