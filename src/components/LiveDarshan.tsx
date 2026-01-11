@@ -122,6 +122,7 @@ const LiveDarshan = () => {
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                         onLoad={() => setIsLoaded(true)}
+                        loading="lazy"
                         onError={() => setHasError(true)}
                       />
                     )}
